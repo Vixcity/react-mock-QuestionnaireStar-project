@@ -1,24 +1,3 @@
-# react-mock-QuestionnaireStar-project
-
-## 运行
-
-```bash
-yarn dev
-```
-
-## 打包
-
-```bash
-yarn build
-```
-
-## 添加 eslint
-
-[点击查看](https://www.cnblogs.com/yambo92/p/13740064.html)
-
-在根目录添加 .eslintrc.js 文件
-
-```js
 module.exports = {
   env: {
     browser: true,
@@ -53,13 +32,3 @@ module.exports = {
     semi: ["error", "always"],
   },
 };
-```
-
-## 简单介绍
-
-```js
-// src/components 目录 - 组件
-// src/pages 目录 - 页面（react - 组件）
-
-// 业务 - 页面（跳转，切换，大面积的），组件（零件）
-```
