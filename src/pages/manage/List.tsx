@@ -1,8 +1,14 @@
 import React, { FC, useState } from "react";
 import styles from "./List.module.scss";
 import QuestionCard from "../../components/QuestionCard";
+import { useTitle } from "ahooks";
+// import { useSearchParams } from "react-router-dom";
 
 const List: FC = () => {
+  useTitle("小温问卷 - 我的问卷");
+  // const [searchParams] = useSearchParams();
+  // console.log("keyword:", searchParams.get("keyword"));
+
   const rawQuestionList = [
     {
       _id: "q1", // mongodb 数据库 中的 id 都是带下划线的，为了和数据库统一，所以采用 _id
