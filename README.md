@@ -66,20 +66,119 @@ module.exports = {
 
 ## 路由
 
+```bash
+yarn add react-router-dom --save
+```
+
+### 使用方法
+
+#### 页面内部
+
+```tsx
+import React, { FC } from "react";
+import { Outlet } from "react-router-dom";
+
+const QuestionLayout: FC = () => {
+  return (
+    <>
+      <p>QuestionLayout header</p> 
+      <div>
+        <Outlet />
+      </div>
+    </>
+  );
+};
+
+export default QuestionLayout;
+```
+
+#### router.tsx
+
+```tsx
+import React from "react";
+import { createBrowserRouter } from "react-router-dom";
+
+import MainLayout from "../layouts/MainLayout";
+import ManageLayout from "../layouts/ManageLayout";
+import QuestionLayout from "../layouts/QuestionLayout";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import NotFound from "../pages/NotFound";
+import List from "../pages/manage/List";
+import Trash from "../pages/manage/Trash";
+import Star from "../pages/manage/Star";
+import Edit from "../pages/question/Edit";
+import Stat from "../pages/question/Stat";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+      {
+        path: "*", // 404 路由，一般写在最后，进行兜底
+        element: <NotFound />,
+      },
+    ],
+  },
+  {
+    path: "question",
+    element: <QuestionLayout />,
+    children: [
+      {
+        path: "edit/:id",
+        element: <Edit />,
+      },
+      {
+        path: "stat/:id",
+        element: <Stat />,
+      },
+    ],
+  },
+  {
+    path: "manage",
+    element: <ManageLayout />,
+    children: [
+      {
+        path: "list",
+        element: <List />,
+      },
+      {
+        path: "star",
+        element: <Star />,
+      },
+      {
+        path: "trash",
+        element: <Trash />,
+      },
+    ],
+  },
+]);
+
+export default router;
+```
+
 - 首页 `/`
 - 登录 `/login`
 - 注册 `/register`
 - 404
 - 问卷管理
-  - 我的问卷 `/manage/list`
-  - 星标问卷 `/manage/star`
-  - 回收站 `/manage/trash`
+    - 我的问卷 `/manage/list`
+    - 星标问卷 `/manage/star`
+    - 回收站 `/manage/trash`
 - 问卷详情
-  - 编辑 `/question/edit:id` （动态路由）Restful API
-  - 问卷统计 `/question/stat:id`
-
-## Layout 模板
-
-- MainLayout
-- ManageLayout
-- QuestionLayout
+    - 编辑 `/question/edit:id` （动态路由）Restful API
+    - 问卷统计 `/question/stat:id`
