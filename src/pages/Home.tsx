@@ -1,14 +1,15 @@
 import React, { FC } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { LOGIN_PATHNAME } from "../router/index";
 import { Button } from "antd";
 
 const Home: FC = () => {
   // 第三方Hook
   const nav = useNavigate();
   function clickHandler() {
-    // nav("/login");
+    // nav(LOGIN_PATHNAME);
     nav({
-      pathname: "/login",
+      pathname: LOGIN_PATHNAME,
       search: "b=21",
     });
   }
