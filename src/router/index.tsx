@@ -32,6 +32,24 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
+        path: "manage",
+        element: <ManageLayout />,
+        children: [
+          {
+            path: "list",
+            element: <List />,
+          },
+          {
+            path: "star",
+            element: <Star />,
+          },
+          {
+            path: "trash",
+            element: <Trash />,
+          },
+        ],
+      },
+      {
         path: "*", // 404 路由，一般写在最后，进行兜底
         element: <NotFound />,
       },
@@ -50,26 +68,7 @@ const router = createBrowserRouter([
         element: <Stat />,
       },
     ],
-  },
-  {
-    path: "manage",
-    element: <ManageLayout />,
-    children: [
-      {
-        path: "list",
-        element: <List />,
-      },
-      {
-        path: "star",
-        element: <Star />,
-      },
-      {
-        path: "trash",
-        element: <Trash />,
-      },
-    ],
-  },
-  
+  }, 
 ]);
 
 export default router;
