@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import styles from "./List.module.scss";
+import styles from "./common.module.scss";
 import QuestionCard from "../../components/QuestionCard";
 import { useTitle } from "ahooks";
 // import { useSearchParams } from "react-router-dom";
@@ -54,12 +54,14 @@ const List: FC = () => {
         <div className={styles.right}>搜索</div>
       </div>
       <div className={styles.content}>
-        {questionList.map((q) => {
-          const { _id } = q;
-          return <QuestionCard key={_id} {...q} />;
-        })}
+        {/* 问卷列表 */}
+        {questionList.length > 0 &&
+          questionList.map((q) => {
+            const { _id } = q;
+            return <QuestionCard key={_id} {...q} />;
+          })}
       </div>
-      <div className={styles.footer}>list page footer</div>
+      <div className={styles.footer}>loadMore 上划加载更多</div>
     </>
   );
 };
