@@ -16,7 +16,6 @@ const MainLayout: FC = () => {
         </div>
         <div className={styles.right}>
           <UserInfo />
-          登录/用户信息
         </div>
       </Header>
       <Content className={styles.main}>
