@@ -1,25 +1,35 @@
 import React, { FC } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { LOGIN_PATHNAME } from "../router/index";
-import { Button } from "antd";
+import { Button, Typography } from "antd";
+import { MANAGE_INDEX_PATHNAME } from "../router/index";
+import styles from "./Home.module.scss";
+
+const { Title, Paragraph } = Typography;
 
 const Home: FC = () => {
   // 第三方Hook
   const nav = useNavigate();
-  function clickHandler() {
-    // nav(LOGIN_PATHNAME);
-    nav({
-      pathname: LOGIN_PATHNAME,
-      search: "b=21",
-    });
-  }
+  //   function clickHandler() {
+  //     // nav(LOGIN_PATHNAME);
+  //     nav({
+  //       pathname: LOGIN_PATHNAME,
+  //       search: "b=21",
+  //     });
+  //   }
 
   return (
-    <div>
-      <p>Home</p>
-      <Button onClick={clickHandler}>登录</Button>
-      &nbsp;
-      <Link to="/register?a=10">注册</Link>
+    <div className={styles.container}>
+      <div className={styles.info}>
+        <Title>问卷调查 | 在线投票</Title>
+        <Paragraph>
+          已累计创建问卷 100 份，发布问卷 90 份，收到答卷 980 份
+        </Paragraph>
+        <div>
+          <Button type="primary" onClick={() => nav(MANAGE_INDEX_PATHNAME)}>
+            开始使用
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
