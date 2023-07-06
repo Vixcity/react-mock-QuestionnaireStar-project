@@ -1,14 +1,30 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Typography } from "antd";
 import { MANAGE_INDEX_PATHNAME } from "../router/index";
 import styles from "./Home.module.scss";
+
+import axios from "axios";
+// import "../_mock/index";
 
 const { Title, Paragraph } = Typography;
 
 const Home: FC = () => {
   // 第三方Hook
   const nav = useNavigate();
+
+  useEffect(() => {
+    axios.get("/api/test").then((res) => {
+      console.log("axios data",res.data);
+    });
+    // mockjs 只能劫持 XMLHttpRequest 不能劫持 fetch
+    // 生产环境下也要注释掉，否则线上也会被劫持
+    // 不推荐直接在项目中直接使用 Mockjs
+    // fetch("/api/test")
+    //   .then((res) => res.json())
+    //   .then((data) => console.log("fetch data", data));
+  }, []);
+
   //   function clickHandler() {
   //     // nav(LOGIN_PATHNAME);
   //     nav({
