@@ -3,6 +3,8 @@ type SearchOption = {
   keyword: string;
   isStar: boolean;
   isDeleted: boolean;
+  pageSize: number;
+  page: number;
 };
 
 // 获取单个问卷信息
