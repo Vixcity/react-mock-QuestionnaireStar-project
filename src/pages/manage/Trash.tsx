@@ -14,6 +14,7 @@ import styles from "./common.module.scss";
 import { useTitle } from "ahooks";
 import ListSearch from "../../components/ListSearch";
 import useLoadQuestionListData from "../../hooks/useLoadQuestionListData";
+import ListPage from "../../components/ListPage";
 
 const { Title } = Typography;
 const { confirm } = Modal;
@@ -110,7 +111,9 @@ const Trash: FC = () => {
         {!loading && list.length === 0 && <Empty description="暂无数据" />}
         {!loading && list.length > 0 && TableElement}
       </div>
-      <div className={styles.footer}>分页</div>
+      <div className={styles.footer}>
+        <ListPage total={total} />
+      </div>
     </>
   );
 };

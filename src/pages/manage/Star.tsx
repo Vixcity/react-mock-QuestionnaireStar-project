@@ -3,6 +3,7 @@ import styles from "./common.module.scss";
 import { Typography, Empty, Spin } from "antd";
 import QuestionCard from "../../components/QuestionCard";
 import ListSearch from "../../components/ListSearch";
+import ListPage from "../../components/ListPage";
 import { useTitle } from "ahooks";
 import useLoadQuestionListData from "../../hooks/useLoadQuestionListData";
 
@@ -37,7 +38,9 @@ const Star: FC = () => {
             return <QuestionCard key={_id} {...q} />;
           })}
       </div>
-      <div className={styles.footer}>分页</div>
+      <div className={styles.footer}>
+        <ListPage total={total} />
+      </div>
     </>
   );
 };
