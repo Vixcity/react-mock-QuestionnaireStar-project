@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useRef } from "react";
 import styles from "./common.module.scss";
 import { Spin, Typography } from "antd";
 import QuestionCard from "../../components/QuestionCard";
@@ -18,9 +18,19 @@ const List: FC = () => {
   const [searchParams] = useSearchParams(); // url 参数，虽然没有 page 和 pageSize 但是有 keyword
 
   // 触发加载的函数，且防抖
+  const containerRef = useRef<HTMLDivElement>(null);
   const { run: tryLoadMore } = useDebounceFn(
     () => {
-      console.log("tryLoadMore...");
+      const elem = containerRef.current;
+      if (elem === null) return;
+
+      const domRect = elem.getBoundingClientRect();
+      if (domRect === null) return;
+
+      const { bottom } = domRect;
+      if (bottom <= window.innerHeight) {
+        console.log("执行加载");
+      }
     },
     {
       wait: 1000,
@@ -29,6 +39,7 @@ const List: FC = () => {
 
   // 页面加载或者 keyword 变化时触发加载
   useEffect(() => {
+    // 初始化
     tryLoadMore();
   }, [searchParams]);
 
@@ -69,7 +80,9 @@ const List: FC = () => {
             return <QuestionCard key={_id} {...q} />;
           })}
       </div>
-      <div className={styles.footer}>loadMore…上划加载更多…</div>
+      <div className={styles.footer}>
+        <div ref={containerRef}>loadMore…上划加载更多…</div>
+      </div>
     </>
   );
 };
