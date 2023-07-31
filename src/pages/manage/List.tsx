@@ -113,6 +113,7 @@ const List: FC = () => {
         {/* 问卷列表 */}
         {/* <div style={{ height: "2000px" }}></div> */}
         {list.length > 0 &&
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           list.map((q: any) => {
             const { _id } = q;
             return <QuestionCard key={_id} {...q} />;
