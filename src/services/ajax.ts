@@ -1,5 +1,6 @@
 import { message } from "antd";
 import axios from "axios";
+import { getToken } from "../utils/user-token";
 
 // 创建实例
 const instance = axios.create({
@@ -7,6 +8,13 @@ const instance = axios.create({
 });
 
 // 请求拦截
+instance.interceptors.request.use(
+  (config) => {
+    config.headers["Authorization"] = `Bearer ${getToken()}`; // JWT 的固定格式
+    return config;
+  },
+  (err) => Promise.reject(err),
+);
 
 // 响应拦截
 // 统一处理 errno 和 msg

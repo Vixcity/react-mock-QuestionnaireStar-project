@@ -1,16 +1,40 @@
 import React, { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LOGIN_PATHNAME } from "../router/index";
+import { Button, message } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import { useRequest } from "ahooks";
+import { getUserInfoServices } from "../services/user";
+import { removeToken } from "../utils/user-token";
 // import styles from "./UserInfo.module.scss";
 
 const UserInfo: FC = () => {
-  // 对于已经登录的用户，显示什么？后面在做
+  const nav = useNavigate();
 
-  return (
+  const { data } = useRequest(getUserInfoServices);
+  const { username, nickname } = data || {};
+
+  function loginOut() {
+    removeToken(); // 清除 Token 的存储
+    message.success("退出成功");
+    nav(LOGIN_PATHNAME);
+  }
+
+  const UserInfo = (
     <>
-      <Link to={LOGIN_PATHNAME}>登录</Link>
+      <span style={{ color: "#e8e8e8" }}>
+        <UserOutlined />
+        {nickname}
+      </span>
+      <Button type="link" onClick={loginOut}>
+        退出
+      </Button>
     </>
   );
+
+  const Login = <Link to={LOGIN_PATHNAME}>登录</Link>;
+
+  return <div>{username ? UserInfo : Login}</div>;
 };
 
 export default UserInfo;
