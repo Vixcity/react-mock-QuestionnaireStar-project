@@ -1,13 +1,25 @@
 import React, { FC } from "react";
 import useLoadQuestionData from "../../../hooks/useLoadQuestionData";
+import styles from "./index.module.scss";
+import EditCanvas from "./EditCanvas";
 
 const Edit: FC = () => {
   const { loading, data } = useLoadQuestionData();
 
   return (
-    <div>
-      <p>Edit Page</p>
-      {loading ? <p>loading</p> : <div>{JSON.stringify(data)}</div>}
+    <div className={styles.container}>
+      <div style={{ background: "#fff", height: "40px" }}>Header</div>
+      <div className={styles["content-wrapper"]}>
+        <div className={styles.content}>
+          <div className={styles.left}>Left</div>
+          <div className={styles.main}>
+            <div className={styles["canvas-wrapper"]}>
+              <EditCanvas />
+            </div>
+          </div>
+          <div className={styles.right}>Right</div>
+        </div>
+      </div>
     </div>
   );
 };
