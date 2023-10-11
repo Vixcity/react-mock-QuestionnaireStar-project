@@ -4,8 +4,21 @@ import styles from "./EditCanvas.module.scss";
 // 临时展示一下title和input效果
 import QuestionTitle from "../../../components/QuestionComponents/QuestionTitle/Components";
 import QuestionInput from "../../../components/QuestionComponents/QuestionInput/Components";
+import { Spin } from "antd";
 
-const EditCanvas: FC = () => {
+type PropsType = {
+  loading: boolean;
+};
+
+const EditCanvas: FC<PropsType> = ({ loading }) => {
+  if (loading) {
+    return (
+      <div style={{ textAlign: "center" }}>
+        <Spin />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.canvas}>
       <div>
