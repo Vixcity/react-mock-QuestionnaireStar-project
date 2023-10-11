@@ -29,7 +29,7 @@ function useLoadQuestionData() {
     const { title = "", componentList = [] } = data;
 
     // 把 componentList 存储到 Redux store 中
-    dispatch(resetComponents(componentList));
+    dispatch(resetComponents({ componentList }));
   }, [data]);
 
   // 判断 id 变化，执行 ajax 加载问卷数据
