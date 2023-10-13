@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import useLoadQuestionData from "../../../hooks/useLoadQuestionData";
+import LeftPanel from "./LeftPanel";
 import styles from "./index.module.scss";
 import EditCanvas from "./EditCanvas";
 import { useDispatch } from "react-redux";
@@ -18,7 +19,9 @@ const Edit: FC = () => {
       <div style={{ background: "#fff", height: "40px" }}>Header</div>
       <div className={styles["content-wrapper"]}>
         <div className={styles.content}>
-          <div className={styles.left}>Left</div>
+          <div className={styles.left}>
+            <LeftPanel />
+          </div>
           <div className={styles.main} onClick={clearSelectId}>
             <div className={styles["canvas-wrapper"]}>
               <EditCanvas loading={loading} />
