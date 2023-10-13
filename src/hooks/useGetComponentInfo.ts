@@ -7,9 +7,9 @@ function useGetComponentInfo() {
     (state) => state.components,
   ) as ComponentsStateType;
 
-  const { componentList = [] } = components;
+  const { componentList = [], selectedId } = components;
 
-  return { componentList };
+  return { componentList, selectedId };
 }
 
 export default useGetComponentInfo;
