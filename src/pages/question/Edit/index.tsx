@@ -1,11 +1,12 @@
 import React, { FC } from "react";
 import useLoadQuestionData from "../../../hooks/useLoadQuestionData";
-import LeftPanel from "./LeftPanel";
 import styles from "./index.module.scss";
+import LeftPanel from "./LeftPanel";
+import RightPanel from "./RightPanel";
 import EditCanvas from "./EditCanvas";
+import EditHeader from "./EditHeader";
 import { useDispatch } from "react-redux";
 import { changeSelectId } from "../../../store/componentReducer";
-import RightPanel from "./RightPanel";
 
 const Edit: FC = () => {
   const { loading } = useLoadQuestionData();
@@ -17,7 +18,9 @@ const Edit: FC = () => {
 
   return (
     <div className={styles.container}>
-      <div style={{ background: "#fff", height: "40px" }}>Header</div>
+      <div style={{ background: "#fff", height: "40px" }}>
+        <EditHeader />
+      </div>
       <div className={styles["content-wrapper"]}>
         <div className={styles.content}>
           <div className={styles.left}>

@@ -19,12 +19,14 @@
     width: 285px;
     background-color: white;
     padding: 0 12px;
+    margin-top: 12px;
   }
 
   .main {
     flex: 1;
     position: relative;
     overflow: hidden;
+    margin-top: 12px;
 
     .canvas-wrapper {
       position: absolute;
@@ -41,5 +43,6 @@
     width: 300px;
     background-color: white;
     padding: 0 12px;
+    margin-top: 12px;
   }
 }

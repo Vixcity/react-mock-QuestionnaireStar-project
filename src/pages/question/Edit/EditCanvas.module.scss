@@ -15,8 +15,13 @@
   }
 }
 
-.selected{
+.selected {
   border-color: #1890ff !important;
+}
+
+.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .component {
