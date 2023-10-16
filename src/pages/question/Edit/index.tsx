@@ -5,6 +5,7 @@ import styles from "./index.module.scss";
 import EditCanvas from "./EditCanvas";
 import { useDispatch } from "react-redux";
 import { changeSelectId } from "../../../store/componentReducer";
+import RightPanel from "./RightPanel";
 
 const Edit: FC = () => {
   const { loading } = useLoadQuestionData();
@@ -27,7 +28,9 @@ const Edit: FC = () => {
               <EditCanvas loading={loading} />
             </div>
           </div>
-          <div className={styles.right}>Right</div>
+          <div className={styles.right}>
+            <RightPanel />
+          </div>
         </div>
       </div>
     </div>

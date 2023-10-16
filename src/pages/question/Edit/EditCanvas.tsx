@@ -38,7 +38,7 @@ const EditCanvas: FC<PropsType> = ({ loading }) => {
     dispatch(changeSelectId(id));
   }
 
-  getComponentConfByType;
+  // getComponentConfByType;
   if (loading) {
     return (
       <div style={{ textAlign: "center" }}>
