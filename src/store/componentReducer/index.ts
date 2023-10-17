@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import produce from "immer";
+import cloneDeep from "lodash.clonedeep";
+import { nanoid } from "nanoid";
 import { ComponentPropsType } from "./../../components/QuestionComponents/index";
-import { getNextSelectId } from "./utils";
+import { getNextSelectId, insertNewComponent } from "./utils";
 
 export type ComponentInfoType = {
   fe_id: string; // 这个是在前端生成的 id 服务端 MongoDB 不认识这种格式，所以自定义一个 fe_id
@@ -15,12 +17,14 @@ export type ComponentInfoType = {
 export type ComponentsStateType = {
   selectedId: string;
   componentList: Array<ComponentInfoType>;
+  copiedComponent: ComponentInfoType | null;
 };
 
 const INIT_STATE: ComponentsStateType = {
   selectedId: "",
   componentList: [],
   // 其他扩展
+  copiedComponent: null,
 };
 
 export const componentsSlice = createSlice({
@@ -49,19 +53,7 @@ export const componentsSlice = createSlice({
         action: PayloadAction<ComponentInfoType>,
       ) => {
         const newComponent = action.payload;
-
-        const { selectedId, componentList } = draft;
-        const index = componentList.findIndex((c) => c.fe_id === selectedId);
-
-        // 未选中组件
-        if (index < 0) {
-          draft.componentList.push(newComponent);
-        } else {
-          // 选中了组件，插入到index后面
-          draft.componentList.splice(index + 1, 0, newComponent);
-        }
-
-        draft.selectedId = newComponent.fe_id;
+        insertNewComponent(draft, newComponent);
       },
     ),
 
@@ -137,6 +129,30 @@ export const componentsSlice = createSlice({
         }
       },
     ),
+
+    // 拷贝当前选中的组件
+    copySelectedComponent: produce((draft: ComponentsStateType) => {
+      const { selectedId, componentList = [] } = draft;
+
+      const selectedComponent = componentList.find(
+        (c) => c.fe_id === selectedId,
+      );
+      if (!selectedComponent) return;
+
+      draft.copiedComponent = cloneDeep(selectedComponent); // 深拷贝
+    }),
+
+    // 粘贴组件
+    pasteCopiedComponent: produce((draft: ComponentsStateType) => {
+      const { copiedComponent } = draft;
+      if (!copiedComponent) return;
+
+      // 要把 fe_id 修改了，重要
+      copiedComponent.fe_id = nanoid();
+
+      // 插入 copiedComponent
+      insertNewComponent(draft, copiedComponent);
+    }),
   },
 });
 
@@ -148,6 +164,8 @@ export const {
   removeSelectedComponent,
   changeComponentHidden,
   toggleComponentLocked,
+  copySelectedComponent,
+  pasteCopiedComponent,
 } = componentsSlice.actions;
 
 export default componentsSlice.reducer;
