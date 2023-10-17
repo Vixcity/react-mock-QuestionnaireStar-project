@@ -51,7 +51,7 @@ const PropComponent: FC<QuestionTitlePropsType> = (
           ]}
         />
       </Form.Item>
-      <Form.Item label="是否居中" name="isCenter" valuePropName="checked">
+      <Form.Item name="isCenter" valuePropName="checked">
         <Checkbox>居中显示</Checkbox>
       </Form.Item>
     </Form>

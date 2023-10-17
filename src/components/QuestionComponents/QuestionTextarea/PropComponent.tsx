@@ -1,9 +1,9 @@
 import React, { FC, useEffect } from "react";
 import { Form, Input } from "antd";
-import { QuestionInputPropsType } from "./interface";
+import { QuestionTextareaPropsType } from "./interface";
 
-const PropComponent: FC<QuestionInputPropsType> = (
-  props: QuestionInputPropsType,
+const PropComponent: FC<QuestionTextareaPropsType> = (
+  props: QuestionTextareaPropsType,
 ) => {
   const { title, placeholder, onChange, disabled } = props;
   const [form] = Form.useForm();
@@ -33,7 +33,10 @@ const PropComponent: FC<QuestionInputPropsType> = (
       >
         <Input />
       </Form.Item>
-      <Form.Item label="Placeholder" name="placeholder">
+      <Form.Item
+        label="Placeholder"
+        name="placeholder"
+      >
         <Input />
       </Form.Item>
     </Form>
