@@ -3,7 +3,7 @@
  * @author Vixcity
  */
 
-import Component from "./Components";
+import Component from "./Component";
 import PropComponent from "./PropComponent";
 import { QuestionTitleDefaultProps } from "./interface";
 
