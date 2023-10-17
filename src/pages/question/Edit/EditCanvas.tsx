@@ -9,6 +9,7 @@ import {
 } from "../../../store/componentReducer";
 import styles from "./EditCanvas.module.scss";
 import { useDispatch } from "react-redux";
+import useBindCanvasKeyPress from "../../../hooks/useBindCanvasKeyPress";
 
 // 临时展示一下title和input效果
 // import QuestionTitle from "../../../components/QuestionComponents/QuestionTitle/Components";
@@ -38,7 +39,9 @@ const EditCanvas: FC<PropsType> = ({ loading }) => {
     dispatch(changeSelectId(id));
   }
 
-  // getComponentConfByType;
+  // 绑定快捷键
+  useBindCanvasKeyPress();
+
   if (loading) {
     return (
       <div style={{ textAlign: "center" }}>
