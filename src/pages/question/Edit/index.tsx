@@ -18,7 +18,7 @@ const Edit: FC = () => {
 
   return (
     <div className={styles.container}>
-      <div style={{ background: "#fff", height: "40px" }}>
+      <div style={{ background: "#fff", height: "57px" }}>
         <EditHeader />
       </div>
       <div className={styles["content-wrapper"]}>

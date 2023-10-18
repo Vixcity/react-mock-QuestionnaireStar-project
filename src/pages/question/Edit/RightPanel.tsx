@@ -26,7 +26,11 @@ const RightPanel: FC = () => {
       children: <div>页面设置</div>,
     },
   ];
-  return <Tabs defaultActiveKey="prop" items={tabItems}></Tabs>;
+  return (
+    <div style={{ height: "calc(100vh - 81px)" }}>
+      <Tabs defaultActiveKey="prop" items={tabItems}></Tabs>
+    </div>
+  );
 };
 
 export default RightPanel;
